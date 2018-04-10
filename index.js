@@ -45,7 +45,15 @@ function karmaConfigurator(files) {
              * possible values: 'dots', 'progress'
              * available reporters: https://npmjs.org/browse/keyword/karma-reporter
              */
-            reporters: ['progress', 'coverage'],
+            reporters: ['mocha', 'coverage'],
+
+            mochaReporter: {
+                output: 'autowatch',
+
+                showDiff: true,
+
+                maxLogLines: 5
+            },
 
             coverageReporter: {
                 type: 'html',
@@ -81,7 +89,14 @@ function karmaConfigurator(files) {
              */
             //singleRun: true,
 
-            plugins: [require('karma-mocha'), require('karma-chai-sinon'), require('karma-coverage'), require('karma-chrome-launcher'), require('karma-firefox-launcher')]
+            plugins: [
+                require('karma-mocha'),
+                require('karma-chai-sinon'),
+                require('karma-mocha-reporter'),
+                require('karma-coverage'),
+                require('karma-chrome-launcher'),
+                require('karma-firefox-launcher')
+            ]
         });
     };
 }
